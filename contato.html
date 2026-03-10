@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contato</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+<script>
+tailwind.config = {
+theme:{
+extend:{
+colors:{
+primary:"#6c63ff"
+}
+}
+}
+}
+</script>
+
+</head>
+
+<body class="bg-[#0d1117] text-[#e6edf3] font-sans">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-[#0d1117]/80 border-b border-[#222]">
+
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+<a href="index.html" class="text-xl font-bold tracking-wide hover:text-primary transition">
+NeoStore
+</a>
+
+<nav class="flex gap-8 text-sm text-gray-300">
+
+<a href="produtos.html" class="hover:text-white transition">Produtos</a>
+<a href="sobre.html" class="hover:text-white transition">Sobre</a>
+<a href="contato.html" class="hover:text-white transition">Contato</a>
+
+</nav>
+
+<button class="cart relative w-10 h-10 flex items-center justify-center rounded-lg border border-[#222] hover:border-primary transition">
+
+🛒
+
+<span class="cartCount absolute -top-2 -right-2 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+0
+</span>
+
+</button>
+
+</div>
+
+</header>
+
+<section class="max-w-xl mx-auto py-24 px-6">
+
+<h1 class="text-3xl font-bold mb-8 text-center">
+Entre em contato
+</h1>
+
+<form class="flex flex-col gap-5">
+
+<input
+type="text"
+placeholder="Seu nome"
+class="bg-[#161b22] border border-[#222] rounded-lg p-3">
+
+<input
+type="email"
+placeholder="Seu email"
+class="bg-[#161b22] border border-[#222] rounded-lg p-3">
+
+<textarea
+rows="5"
+placeholder="Sua mensagem"
+class="bg-[#161b22] border border-[#222] rounded-lg p-3"></textarea>
+
+<button
+class="bg-primary py-3 rounded-lg hover:scale-105 transition">
+Enviar mensagem
+</button>
+
+</form>
+
+</section>
+
+<footer class="text-center py-10 opacity-60 border-t border-[#222]">
+© 2026 NeoStore
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NeoStore</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#6c63ff"
+      }
+    }
+  }
+}
+</script>
+
+<style>
+body{
+  opacity:0;
+  animation:fade .6s ease forwards;
+}
+
+@keyframes fade{
+  to{opacity:1;}
+}
+
+.product-card:hover .product-image{
+  transform:scale(1.05);
+}
+
+.cartCount{
+  font-size:11px;
+  font-weight:700;
+  line-height:1;
+}
+
+.hero-glow{
+  background:
+    radial-gradient(circle at top, rgba(108,99,255,.22), transparent 35%),
+    radial-gradient(circle at 80% 20%, rgba(99,102,241,.12), transparent 28%),
+    linear-gradient(to bottom, rgba(13,17,23,.35), rgba(13,17,23,.95));
+}
+
+.glass-card{
+  background:rgba(22,27,34,.78);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.section-title{
+  font-size:2rem;
+  font-weight:700;
+  letter-spacing:-0.02em;
+}
+
+/* compatível com o script.js */
+
+.addButton{
+  width:100%;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 16px;
+  border-radius:14px;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  box-shadow:0 10px 24px rgba(99,102,241,.28);
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+
+.addButton:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 32px rgba(99,102,241,.34);
+}
+
+.qtyControl{
+  width:100%;
+  min-height:48px;
+  display:grid;
+  grid-template-columns:48px 1fr 48px;
+  align-items:center;
+  gap:10px;
+  background:#0f141c;
+  border:1px solid #2a3140;
+  border-radius:14px;
+  padding:6px;
+}
+
+.qtyValue{
+  text-align:center;
+  font-size:16px;
+  font-weight:700;
+  color:#e6edf3;
+  user-select:none;
+}
+
+.qtyBtn{
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  font-size:20px;
+  font-weight:800;
+  color:#fff;
+  cursor:pointer;
+  transition:transform .18s ease, filter .18s ease;
+  user-select:none;
+}
+
+.qtyBtn:hover{
+  transform:scale(1.08);
+  filter:brightness(1.05);
+}
+
+.qtyBtn:active{
+  transform:scale(.96);
+}
+
+.qtyBtn.minus{
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.qtyBtn.plus{
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+}
+
+.addCart{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+}
+
+.feature-icon{
+  box-shadow:0 10px 24px rgba(99,102,241,.18);
+}
+</style>
+</head>
+
+<body class="bg-[#0d1117] text-[#e6edf3] font-sans">
+
+<header class="sticky top-0 z-50 backdrop-blur bg-[#0d1117]/85 border-b border-[#222]">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+
+    <a href="index.html" class="text-xl font-bold tracking-wide hover:text-primary transition">
+      NeoStore
+    </a>
+
+    <nav class="flex gap-8 text-sm text-gray-300">
+      <a href="produtos.html" class="hover:text-white transition">Produtos</a>
+      <a href="sobre.html" class="hover:text-white transition">Sobre</a>
+      <a href="contato.html" class="hover:text-white transition">Contato</a>
+    </nav>
+
+    <button class="cart relative w-11 h-11 flex items-center justify-center rounded-xl bg-[#161b22] border border-[#2a2f36] hover:border-primary hover:scale-[1.03] transition">
+      <span class="text-lg">🛒</span>
+      <span class="cartCount absolute -top-2 -right-2 bg-primary text-white w-5 h-5 rounded-full flex items-center justify-center">
+        0
+      </span>
+    </button>
+
+  </div>
+</header>
+
+<section class="carousel relative w-full min-h-[82vh] overflow-hidden hero-glow">
+  <div class="carousel-track flex h-full min-h-[82vh] transition-transform duration-700">
+
+    <div class="slide min-w-full relative">
+      <img
+        src="https://picsum.photos/1600/900?fashion"
+        class="absolute inset-0 w-full h-full object-cover brightness-[0.38]"
+        alt="Coleção NeoStore"
+      >
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-[82vh] flex items-center">
+        <div class="grid lg:grid-cols-2 gap-10 items-center w-full">
+
+          <div>
+            <p class="uppercase tracking-[0.25em] text-xs text-indigo-300 mb-4">
+              Coleção 2026
+            </p>
+
+            <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+              Moda minimalista com visual premium
+            </h1>
+
+            <p class="text-gray-300 text-lg leading-relaxed max-w-xl mb-8">
+              Peças modernas, confortáveis e versáteis para quem quer presença,
+              simplicidade e estilo em qualquer ocasião.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+              <a href="produtos.html"
+                 class="bg-primary px-8 py-4 rounded-2xl font-semibold hover:scale-[1.04] hover:shadow-2xl transition">
+                Explorar coleção
+              </a>
+
+              <a href="produto.html?id=camiseta-minimal"
+                 class="glass-card px-8 py-4 rounded-2xl font-semibold hover:border-primary transition">
+                Ver destaque
+              </a>
+            </div>
+          </div>
+
+          <div class="hidden lg:flex justify-end">
+            <div class="glass-card rounded-[28px] p-6 w-[420px]">
+              <img
+                src="https://picsum.photos/520/620?streetwear"
+                class="w-full h-[420px] object-cover rounded-[22px]"
+                alt="Produto destaque"
+              >
+              <div class="pt-5">
+                <p class="text-sm text-gray-400 mb-2">Destaque da semana</p>
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <h3 class="text-xl font-semibold">Camiseta Minimal</h3>
+                    <p class="text-primary font-bold mt-1">R$89,90</p>
+                  </div>
+                  <a href="produto.html?id=camiseta-minimal"
+                     class="bg-white/10 hover:bg-white/15 transition px-4 py-2 rounded-xl text-sm">
+                    Detalhes
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="slide min-w-full relative">
+      <img
+        src="https://picsum.photos/1600/900?minimal"
+        class="absolute inset-0 w-full h-full object-cover brightness-[0.34]"
+        alt="Estilo minimalista"
+      >
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-[82vh] flex items-center">
+        <div class="max-w-2xl">
+          <p class="uppercase tracking-[0.25em] text-xs text-indigo-300 mb-4">
+            Essenciais
+          </p>
+          <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+            Design limpo para o dia a dia
+          </h2>
+          <p class="text-gray-300 text-lg leading-relaxed mb-8">
+            Modelagens modernas, materiais selecionados e uma estética feita
+            para quem gosta de presença sem exagero.
+          </p>
+          <a href="produtos.html"
+             class="bg-primary px-8 py-4 rounded-2xl font-semibold hover:scale-[1.04] transition inline-block">
+            Ver produtos
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide min-w-full relative">
+      <img
+        src="https://picsum.photos/1600/900?urban"
+        class="absolute inset-0 w-full h-full object-cover brightness-[0.34]"
+        alt="Moda urbana"
+      >
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-[82vh] flex items-center">
+        <div class="max-w-2xl">
+          <p class="uppercase tracking-[0.25em] text-xs text-indigo-300 mb-4">
+            Urban Essentials
+          </p>
+          <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+            Presença, conforto e identidade
+          </h2>
+          <p class="text-gray-300 text-lg leading-relaxed mb-8">
+            Uma curadoria focada em visual contemporâneo e combinações fáceis
+            para rotina, saída e lifestyle urbano.
+          </p>
+          <a href="produto.html?id=tenis-casual"
+             class="bg-primary px-8 py-4 rounded-2xl font-semibold hover:scale-[1.04] transition inline-block">
+            Ver destaque
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="prev absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/35 backdrop-blur border border-white/10 hover:bg-black/55 hover:scale-110 transition text-xl flex items-center justify-center z-20">
+    ❮
+  </button>
+
+  <button class="next absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/35 backdrop-blur border border-white/10 hover:bg-black/55 hover:scale-110 transition text-xl flex items-center justify-center z-20">
+    ❯
+  </button>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="glass-card rounded-2xl p-6">
+      <div class="feature-icon w-12 h-12 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center mb-4">
+        🚚
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Envio rápido</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+        Entrega ágil com embalagem segura e acompanhamento do pedido.
+      </p>
+    </div>
+
+    <div class="glass-card rounded-2xl p-6">
+      <div class="feature-icon w-12 h-12 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center mb-4">
+        ✨
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Qualidade premium</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+        Materiais escolhidos para unir conforto, durabilidade e presença visual.
+      </p>
+    </div>
+
+    <div class="glass-card rounded-2xl p-6">
+      <div class="feature-icon w-12 h-12 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center mb-4">
+        🔒
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Compra segura</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+        Experiência confiável, visual limpa e navegação pensada para conversão.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-10">
+  <div class="flex items-end justify-between gap-6 mb-10">
+    <div>
+      <p class="text-sm uppercase tracking-[0.2em] text-indigo-300 mb-2">Destaques</p>
+      <h2 class="section-title">Produtos em destaque</h2>
+    </div>
+    <a href="produtos.html" class="text-sm text-gray-400 hover:text-primary transition">
+      Ver catálogo completo
+    </a>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    <article
+      class="card product-card bg-[#161b22] border border-[#222] rounded-2xl overflow-hidden hover:shadow-2xl hover:border-indigo-500 transition duration-300 flex flex-col"
+      data-name="Camiseta Minimal"
+      data-price="89.90"
+    >
+      <a href="produto.html?id=camiseta-minimal" class="block overflow-hidden">
+        <img
+          src="https://picsum.photos/500/500?fashion"
+          class="product-image w-full h-80 object-cover transition duration-500"
+          alt="Camiseta Minimal"
+        >
+      </a>
+
+      <div class="p-6 flex flex-col gap-4 flex-1">
+        <div>
+          <h3 class="font-semibold text-xl">Camiseta Minimal</h3>
+          <p class="text-indigo-400 font-bold text-lg mt-2">R$89,90</p>
+        </div>
+
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Visual limpo, toque premium e caimento moderno para combinações versáteis.
+        </p>
+
+        <div class="mt-auto addCart"></div>
+
+        <a href="produto.html?id=camiseta-minimal" class="text-sm text-gray-400 hover:text-primary transition">
+          Ver detalhes
+        </a>
+      </div>
+    </article>
+
+    <article
+      class="card product-card bg-[#161b22] border border-[#222] rounded-2xl overflow-hidden hover:shadow-2xl hover:border-indigo-500 transition duration-300 flex flex-col"
+      data-name="Tênis Casual"
+      data-price="199.90"
+    >
+      <a href="produto.html?id=tenis-casual" class="block overflow-hidden">
+        <img
+          src="https://picsum.photos/500/500?shoe"
+          class="product-image w-full h-80 object-cover transition duration-500"
+          alt="Tênis Casual"
+        >
+      </a>
+
+      <div class="p-6 flex flex-col gap-4 flex-1">
+        <div>
+          <h3 class="font-semibold text-xl">Tênis Casual</h3>
+          <p class="text-indigo-400 font-bold text-lg mt-2">R$199,90</p>
+        </div>
+
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Estrutura leve, conforto prolongado e presença urbana para o dia a dia.
+        </p>
+
+        <div class="mt-auto addCart"></div>
+
+        <a href="produto.html?id=tenis-casual" class="text-sm text-gray-400 hover:text-primary transition">
+          Ver detalhes
+        </a>
+      </div>
+    </article>
+
+    <article
+      class="card product-card bg-[#161b22] border border-[#222] rounded-2xl overflow-hidden hover:shadow-2xl hover:border-indigo-500 transition duration-300 flex flex-col"
+      data-name="Boné Street"
+      data-price="49.90"
+    >
+      <a href="produto.html?id=bone-street" class="block overflow-hidden">
+        <img
+          src="https://picsum.photos/500/500?cap"
+          class="product-image w-full h-80 object-cover transition duration-500"
+          alt="Boné Street"
+        >
+      </a>
+
+      <div class="p-6 flex flex-col gap-4 flex-1">
+        <div>
+          <h3 class="font-semibold text-xl">Boné Street</h3>
+          <p class="text-indigo-400 font-bold text-lg mt-2">R$49,90</p>
+        </div>
+
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Ajuste confortável e estética streetwear para finalizar qualquer visual.
+        </p>
+
+        <div class="mt-auto addCart"></div>
+
+        <a href="produto.html?id=bone-street" class="text-sm text-gray-400 hover:text-primary transition">
+          Ver detalhes
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <div class="glass-card rounded-[28px] p-10 md:p-14 text-center">
+    <p class="text-sm uppercase tracking-[0.25em] text-indigo-300 mb-4">NeoStore</p>
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Monte seu estilo com peças que realmente combinam com você
+    </h2>
+    <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed mb-8">
+      Explore uma vitrine moderna com foco em conforto, presença visual e estética premium.
+    </p>
+    <a href="produtos.html"
+       class="inline-flex bg-primary px-8 py-4 rounded-2xl font-semibold hover:scale-[1.04] transition">
+      Ir para os produtos
+    </a>
+  </div>
+</section>
+
+<footer class="border-t border-[#222]">
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+    <p>© 2026 NeoStore. Todos os direitos reservados.</p>
+    <div class="flex gap-6">
+      <a href="sobre.html" class="hover:text-gray-300 transition">Sobre</a>
+      <a href="contato.html" class="hover:text-gray-300 transition">Contato</a>
+      <a href="produtos.html" class="hover:text-gray-300 transition">Produtos</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
